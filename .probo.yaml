@@ -1,0 +1,17 @@
+steps:
+  - name: Update Composer
+    command: '/usr/local/bin/composer self-update'
+  - name: Get proper drush version
+    command: 'composer global require drush/drush:dev-master ; cd /usr/local/bin ; mv drush drush7 ; ln -s $HOME/.composer/vendor/bin/drush drush'
+  - name: Run composer
+    command: 'composer create-project goalgorilla/social_template:dev-master /var/www/html/ --no-interaction'
+  - name: Earlier cache rebuild
+    command: 'drush --root='/var/www/html' cr'
+  - name: DB Updates
+    command: 'drush --root='/var/www/html/' updb -y'
+  - name: Rebuild Caches
+    command: 'drush --root='/var/www/html' cr'
+  - name: Entity Updates
+    command: 'drush --root='/var/www/html/' updb --entity-updates -y'
+  - name: Generate login link
+    command: 'drush --root='/var/www/html/' uli'
