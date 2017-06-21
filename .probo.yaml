@@ -6,12 +6,12 @@ steps:
   - name: Run composer
     command: 'composer create-project goalgorilla/social_template:dev-master /var/www/html/ --no-interaction'
   - name: Earlier cache rebuild
-    command: "drush --root='/var/www/html' cr"
+    command: 'drush --root='/var/www/html' cr'
   - name: DB Updates
-    command: "drush --root='/var/www/html/' updb -y"
+    command: 'drush --root='/var/www/html/' updb -y'
   - name: Rebuild Caches
-    command: "drush --root='/var/www/html' cr"
+    command: 'drush --root='/var/www/html' cr'
   - name: Entity Updates
-    command: "drush --root='/var/www/html/' updb --entity-updates -y"
+    command: 'drush --root='/var/www/html/' updb --entity-updates -y'
   - name: Generate login link
-    command: "drush --root='/var/www/html/' uli"
+    command: 'drush --root='/var/www/html/' uli'
